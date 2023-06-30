@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://huehvwq5wjto"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1sgij"]
+bg_color = Color(0.392157, 0.768627, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k44i1"]
+bg_color = Color(0.917647, 0.301961, 0.239216, 1)
+
+[resource]
+ResumeButton/base_type = &"Button"
+ResumeButton/styles/normal = SubResource("StyleBoxFlat_1sgij")
+StopButton/base_type = &"Button"
+StopButton/styles/normal = SubResource("StyleBoxFlat_k44i1")

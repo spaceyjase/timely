@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://djec3i8ehl8ew"]
+
+[ext_resource type="Script" path="res://UI/TimerRow/timer_row.gd" id="1_rwsk4"]
+[ext_resource type="Theme" uid="uid://huehvwq5wjto" path="res://UI/Shared/timely_theme.tres" id="2_ijdwf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osxop"]
+bg_color = Color(0.964706, 0.807843, 0.27451, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TimerRow" type="Control" node_paths=PackedStringArray("timer_label", "timer_line_edit")]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 250.0
+size_flags_horizontal = 3
+script = ExtResource("1_rwsk4")
+timer_label = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLabel")
+timer_line_edit = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osxop")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "00:00:00"
+vertical_alignment = 1
+
+[node name="TimerLineEdit" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Enter a name"
+max_length = 25
+clear_button_enabled = true
+flat = true
+
+[node name="TimerButton" type="Button" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_ijdwf")
+theme_type_variation = &"ResumeButton"
+theme_override_font_sizes/font_size = 24
+text = "Resume
+"
+
+[connection signal="text_submitted" from="MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit" to="." method="_on_timer_line_edit_text_submitted"]

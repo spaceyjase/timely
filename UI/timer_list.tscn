@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwcppa1ut2urj"]
+
+[ext_resource type="PackedScene" uid="uid://djec3i8ehl8ew" path="res://UI/TimerRow/timer_row.tscn" id="1_7y8mt"]
+[ext_resource type="Script" path="res://UI/timer_list.gd" id="1_pkcff"]
+
+[node name="TimerList" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pkcff")
+timer_row = ExtResource("1_7y8mt")
