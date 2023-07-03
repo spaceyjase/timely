@@ -10,7 +10,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="TimerRow" type="Control" node_paths=PackedStringArray("timer_label", "timer_line_edit")]
+[node name="TimerRow" type="Control" node_paths=PackedStringArray("timer_label", "timer_line_edit", "timer_button") groups=["timer_row"]]
 custom_minimum_size = Vector2(600, 150)
 layout_mode = 3
 anchors_preset = 0
@@ -20,6 +20,7 @@ size_flags_horizontal = 3
 script = ExtResource("1_rwsk4")
 timer_label = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLabel")
 timer_line_edit = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit")
+timer_button = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -84,3 +85,4 @@ text = "Resume
 "
 
 [connection signal="text_submitted" from="MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit" to="." method="_on_timer_line_edit_text_submitted"]
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/HBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]

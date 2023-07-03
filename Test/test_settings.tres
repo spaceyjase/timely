@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AppSettings" load_steps=2 format=3 uid="uid://bimgusxvqke0y"]
+
+[ext_resource type="Script" path="res://Settings/settings.gd" id="1_qsaw7"]
+
+[resource]
+script = ExtResource("1_qsaw7")
+max_timers = 3

@@ -1,6 +1,7 @@
-extends GridContainer
+class_name TimerList extends GridContainer
 
 @export var timer_row: PackedScene
+@export var settings: AppSettings
 
 
 func _ready() -> void:
@@ -9,7 +10,8 @@ func _ready() -> void:
 
 
 func add_timer() -> void:
-	# todo: stop all other timers
+	if is_max_timers():
+		return
 	_stop_timers()
 	var row = timer_row.instantiate()
 	add_child(row)
@@ -19,3 +21,7 @@ func add_timer() -> void:
 func _stop_timers() -> void:
 	for child in get_children():
 		child.stop_timer()
+
+
+func is_max_timers() -> int:
+	return get_child_count() >= settings.max_timers

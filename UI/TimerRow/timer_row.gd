@@ -2,13 +2,37 @@ extends Control
 
 @export var timer_label: Label
 @export var timer_line_edit: LineEdit
+@export var timer_button: Button
 
-var _stopped = true  # todo: setter and getter to reconfigure the UI
-var _timer = 0.0
+var _stopped: bool = true:  # todo: setter and getter to reconfigure the UI
+	get:
+		return _stopped
+	set(value):
+		_stopped = value
+		if _stopped:
+			timer_button.text = "Resume"
+			timer_button.theme_type_variation = "ResumeButton"
+		else:
+			timer_button.text = "Stop"
+			timer_button.theme_type_variation = "StopButton"
+
+var _timer: float = 0.0
+
+var running: bool:
+	get:
+		return not _stopped
 
 
 func start_timer() -> void:
 	_stopped = false
+
+
+func resume() -> void:
+	if not _stopped:
+		stop_timer()
+	else:
+		get_tree().call_group("timer_row", "stop_timer")
+		start_timer()
 
 
 func stop_timer() -> void:
@@ -30,3 +54,7 @@ func _format_timer() -> String:
 
 func _on_timer_line_edit_text_submitted(_new_text: String):
 	timer_line_edit.release_focus()
+
+
+func _on_timer_button_pressed():
+	resume()
