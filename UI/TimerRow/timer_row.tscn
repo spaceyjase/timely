@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://djec3i8ehl8ew"]
+[gd_scene load_steps=6 format=3 uid="uid://djec3i8ehl8ew"]
 
 [ext_resource type="Script" path="res://UI/TimerRow/timer_row.gd" id="1_rwsk4"]
 [ext_resource type="Theme" uid="uid://huehvwq5wjto" path="res://UI/Shared/timely_theme.tres" id="2_ijdwf"]
+[ext_resource type="Texture2D" uid="uid://bshbx7xniwcfs" path="res://Assets/grey_crossWhite.png" id="3_pqofb"]
+[ext_resource type="Texture2D" uid="uid://dgfdsa5khbg4b" path="res://Assets/grey_crossGrey.png" id="3_ujwih"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osxop"]
 bg_color = Color(0.964706, 0.807843, 0.27451, 1)
@@ -10,19 +12,20 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="TimerRow" type="Control" node_paths=PackedStringArray("timer_label", "timer_line_edit", "timer_button") groups=["timer_row"]]
-custom_minimum_size = Vector2(600, 150)
+[node name="TimerRow" type="Control" node_paths=PackedStringArray("timer_label", "timer_line_edit", "timer_button", "delete_container") groups=["timer_row"]]
+custom_minimum_size = Vector2(600, 200)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 600.0
 offset_bottom = 250.0
 size_flags_horizontal = 3
 script = ExtResource("1_rwsk4")
-timer_label = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLabel")
-timer_line_edit = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit")
-timer_button = NodePath("MarginContainer/Panel/MarginContainer/HBoxContainer/TimerButton")
+timer_label = NodePath("TimerContainer/MarginContainer/HBoxContainer/TimerLabel")
+timer_line_edit = NodePath("TimerContainer/MarginContainer/HBoxContainer/TimerLineEdit")
+timer_button = NodePath("TimerContainer/MarginContainer/HBoxContainer/TimerButton")
+delete_container = NodePath("DeleteContainer")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TimerContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,34 +37,29 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Panel" type="Panel" parent="TimerContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_osxop")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="TimerContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TimerContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="TimerLabel" type="Label" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="TimerLabel" type="Label" parent="TimerContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "00:00:00"
 vertical_alignment = 1
 
-[node name="TimerLineEdit" type="LineEdit" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="TimerLineEdit" type="LineEdit" parent="TimerContainer/MarginContainer/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,7 +71,7 @@ max_length = 25
 clear_button_enabled = true
 flat = true
 
-[node name="TimerButton" type="Button" parent="MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="TimerButton" type="Button" parent="TimerContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 75)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -84,5 +82,71 @@ theme_override_font_sizes/font_size = 24
 text = "Resume
 "
 
-[connection signal="text_submitted" from="MarginContainer/Panel/MarginContainer/HBoxContainer/TimerLineEdit" to="." method="_on_timer_line_edit_text_submitted"]
-[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/HBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 11.0
+offset_right = -20.0
+offset_bottom = 29.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_pqofb")
+texture_hover = ExtResource("3_ujwih")
+
+[node name="DeleteContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="DeleteContainer"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osxop")
+
+[node name="MarginContainer" type="MarginContainer" parent="DeleteContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeleteContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="DeleteButton" type="Button" parent="DeleteContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_ijdwf")
+theme_type_variation = &"StopButton"
+theme_override_font_sizes/font_size = 24
+text = "Delete"
+
+[node name="CancelButton" type="Button" parent="DeleteContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_ijdwf")
+theme_type_variation = &"ResumeButton"
+theme_override_font_sizes/font_size = 24
+text = "Cancel"
+
+[connection signal="text_submitted" from="TimerContainer/MarginContainer/HBoxContainer/TimerLineEdit" to="." method="_on_timer_line_edit_text_submitted"]
+[connection signal="pressed" from="TimerContainer/MarginContainer/HBoxContainer/TimerButton" to="." method="_on_timer_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="DeleteContainer/MarginContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="DeleteContainer/MarginContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]

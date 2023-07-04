@@ -74,4 +74,6 @@ theme_type_variation = &"ResumeButton"
 theme_override_font_sizes/font_size = 24
 text = "Start Timer"
 
+[connection signal="child_entered_tree" from="VBoxContainer/ScrollContainer/TimerList" to="." method="_on_timer_list_child_entered_tree"]
+[connection signal="child_exiting_tree" from="VBoxContainer/ScrollContainer/TimerList" to="." method="_on_timer_list_child_exiting_tree"]
 [connection signal="pressed" from="VBoxContainer/Panel/StartTimerButton" to="." method="_on_start_timer_button_pressed"]

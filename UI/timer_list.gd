@@ -24,4 +24,8 @@ func _stop_timers() -> void:
 
 
 func is_max_timers() -> int:
-	return get_child_count() >= settings.max_timers
+	var children = 0
+	for child in get_children():
+		if not child.is_queued_for_deletion():
+			children += 1
+	return children == settings.max_timers

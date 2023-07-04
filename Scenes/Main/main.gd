@@ -15,5 +15,15 @@ func _on_start_timer_button_pressed() -> void:
 
 func _add_timer() -> void:
 	timer_list.add_timer()
+
+
+func _on_timer_list_child_exiting_tree(_node: Node):
+	_check_start_button()
+
+
+func _on_timer_list_child_entered_tree(_node: Node):
+	_check_start_button()
+
+
+func _check_start_button() -> void:
 	start_timer_button.disabled = timer_list.is_max_timers()
-	# todo: if timer list has max number of timers, disable button

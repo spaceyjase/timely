@@ -3,6 +3,7 @@ extends Control
 @export var timer_label: Label
 @export var timer_line_edit: LineEdit
 @export var timer_button: Button
+@export var delete_container: MarginContainer
 
 var _stopped: bool = true:  # todo: setter and getter to reconfigure the UI
 	get:
@@ -39,6 +40,10 @@ func stop_timer() -> void:
 	_stopped = true
 
 
+func delete() -> void:
+	queue_free()
+
+
 func _process(delta):
 	if not _stopped:
 		_timer += delta
@@ -58,3 +63,15 @@ func _on_timer_line_edit_text_submitted(_new_text: String):
 
 func _on_timer_button_pressed():
 	resume()
+
+
+func _on_close_button_pressed():
+	delete_container.visible = true
+
+
+func _on_delete_button_pressed():
+	delete()
+
+
+func _on_cancel_button_pressed():
+	delete_container.visible = false

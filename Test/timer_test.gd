@@ -44,3 +44,15 @@ func max_timers_new_timer_not_added() -> void:
 	add_timer()
 	add_timer()
 	assert(is_max_timers())
+
+
+func delete_timer() -> void:
+	get_child(0).delete()
+	assert(not is_max_timers())
+
+
+func delete_all_timers() -> void:
+	for timer in get_children():
+		timer.delete()
+	assert(not is_max_timers())
+	assert(get_child_count() == 0)
