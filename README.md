@@ -12,7 +12,9 @@ I found this handy for booking time on issues in source control, for example. Th
 
 1. Download the zip.
 2. Extract it somewhere.
-3. Run the application.
+    1. linux/macos users should make it executable: `chmod u+x timely.x86_64`
+4. Run the application.
+    1. some users might want to run in compatible mode: `./timely.x86_64 --rendering-driver opengl3`
 
 Hit 'Start Timer' to create a timer, which begins running immediately. A timer can be stopped by hitting the stop button and then resumed by pressing the resume button.
 
