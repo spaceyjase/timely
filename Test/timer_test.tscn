@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ldto1e1ynpv7"]
+
+[ext_resource type="Script" path="res://Test/timer_test.gd" id="1_wcafg"]
+[ext_resource type="PackedScene" uid="uid://djec3i8ehl8ew" path="res://UI/TimerRow/timer_row.tscn" id="2_7bi2y"]
+[ext_resource type="Resource" uid="uid://bimgusxvqke0y" path="res://Test/test_settings.tres" id="3_sjc7y"]
+
+[node name="TimerTest" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wcafg")
+timer_row = ExtResource("2_7bi2y")
+settings = ExtResource("3_sjc7y")
