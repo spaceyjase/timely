@@ -22,6 +22,8 @@ Timers can be deleted by hitting the 'X' and choosing the appropriate option.
 
 Timers can optionally be _named_ by entering a name in place of the placeholder text.
 
+The latest (develop) version can always be found [here](https://jasonmichaeladams.com/timely/).
+
 ## TODO
 
 - UI theming. The UI was designed quickly in Freeform and (almost!) mirrors the design exactly.
