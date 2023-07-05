@@ -7,6 +7,7 @@ func _ready() -> void:
 	if timer_row == null:
 		printerr("timer_row is null")
 	timer_is_created()
+	timer_name_check()
 	timer_is_stopped_on_new()
 	timers_stopped_on_resume()
 	max_timers_new_timer_not_added()
@@ -23,6 +24,11 @@ func _process(_delta) -> void:
 func timer_is_created() -> void:
 	add_timer()
 	assert(get_child(0).running)
+
+
+func timer_name_check() -> void:
+	get_child(0).timer_name = "12345678901234567890123456789012345678901234567890"
+	assert(get_child(0).timer_name == "12345678901234567890123456789012345678901234567890")
 
 
 func timer_is_stopped_on_new() -> void:

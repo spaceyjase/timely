@@ -54,7 +54,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_twrxw")
 
 [node name="StartTimerButton" type="Button" parent="VBoxContainer/Panel"]
-custom_minimum_size = Vector2(150, 75)
+custom_minimum_size = Vector2(200, 75)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
