@@ -67,14 +67,13 @@ size_flags_vertical = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Enter a name"
-max_length = 25
+max_length = 50
 clear_button_enabled = true
 flat = true
 
 [node name="TimerButton" type="Button" parent="TimerContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 75)
+custom_minimum_size = Vector2(200, 75)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("2_ijdwf")
 theme_type_variation = &"ResumeButton"

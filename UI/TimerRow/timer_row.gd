@@ -17,6 +17,12 @@ var _stopped: bool = true:  # todo: setter and getter to reconfigure the UI
 			timer_button.text = "Stop"
 			timer_button.theme_type_variation = "StopButton"
 
+var timer_name: String:
+	get:
+		return timer_line_edit.text
+	set(value):
+		timer_line_edit.text = value
+
 var _timer: float = 0.0
 
 var running: bool:
