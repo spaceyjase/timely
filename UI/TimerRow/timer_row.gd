@@ -34,6 +34,10 @@ func start_timer() -> void:
 	_stopped = false
 
 
+func _ready() -> void:
+	timer_line_edit.grab_focus()
+
+
 func resume() -> void:
 	if not _stopped:
 		stop_timer()
