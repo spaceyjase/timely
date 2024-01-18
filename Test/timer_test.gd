@@ -7,6 +7,7 @@ func _ready() -> void:
 	if timer_row == null:
 		printerr("timer_row is null")
 	timer_is_created()
+	timer_has_focus_when_created()
 	timer_name_check()
 	timer_is_stopped_on_new()
 	timers_stopped_on_resume()
@@ -24,6 +25,10 @@ func _process(_delta) -> void:
 func timer_is_created() -> void:
 	add_timer()
 	assert(get_child(0).running)
+
+
+func timer_has_focus_when_created() -> void:
+	assert(get_child(0).timer_line_edit.has_focus())
 
 
 func timer_name_check() -> void:
